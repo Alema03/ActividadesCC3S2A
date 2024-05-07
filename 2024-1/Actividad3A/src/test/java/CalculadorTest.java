@@ -71,4 +71,48 @@ public class CalculadorTest {
             calculador.division(numeroA, numeroB);
         });
     }
+
+    @Test
+    public void restaConResultadoNegativo() {
+        // Arrange
+        Calculador calculador = new Calculador();
+        int numeroA = 4;
+        int numeroB = 10;
+
+        // Act
+        int resultado = calculador.restar(numeroA, numeroB);
+
+        // Assert
+        assertEquals(-6, resultado);
+    }
+
+
+    @Test
+    public void multiplicacionConNumeroNegativo() {
+        // Arrange
+        Calculador calculador = new Calculador();
+        int numeroA = 6;
+        int numeroB = -7;
+
+        // Act
+        int resultado = calculador.multiplicacion(numeroA, numeroB);
+
+        // Assert
+        assertEquals(-42, resultado);
+    }
+
+
+    @Test
+    public void divisionConResultadoFraccionario() {
+        // Arrange
+        Calculador calculador = new Calculador();
+        int numeroA = 5;
+        int numeroB = 2;
+
+        // Act
+        double resultado = calculador.division(numeroA, numeroB);
+
+        // Assert
+        assertEquals(2.5, resultado);
+    }
 }
