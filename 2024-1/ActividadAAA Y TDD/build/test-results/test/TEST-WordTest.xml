@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="WordTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-04-10T14:41:16" hostname="DESKTOP-D3ILQNT" time="0.078">
+  <properties/>
+  <testcase name="oneIncorrectLetter()" classname="WordTest" time="0.078"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
