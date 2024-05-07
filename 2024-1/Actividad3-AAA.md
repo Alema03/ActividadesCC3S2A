@@ -62,10 +62,126 @@ public class CalculadorTest {
 
 #### Tareas
 
-1. Escribir pruebas para las demás operaciones: Siguiendo el ejemplo dado, deben escribir pruebas unitarias para los otros métodos en la clase Calculator, asegurándose de cubrir casos de prueba variados, incluidos
-los casos límite como la división por cero.
+1. Escribir pruebas para las demás operaciones: Siguiendo el ejemplo dado, deben escribir pruebas unitarias para los otros métodos en la clase Calculator, asegurándose de cubrir casos de prueba variados, incluidos los casos límite como la división por cero.
+   
+   Prueba de Resta:
+   ```
+    @Test
+    public void restaDosNumeros() {
+        // Arrange
+        Calculador calculador = new Calculador();
+        int numeroA = 10;
+        int numeroB = 4;
+
+        // Act
+        int resultado = calculador.restar(numeroA, numeroB);
+
+        // Assert
+        assertEquals(6, resultado);
+    }
+    ```
+   
+    Prueba de Multiplicación:
+    ```
+    @Test
+    public void multiplicacionDosNumeros() {
+        // Arrange
+        Calculador calculador = new Calculador();
+        int numeroA = 6;
+        int numeroB = 7;
+
+        // Act
+        int resultado = calculador.multiplicacion(numeroA, numeroB);
+
+        // Assert
+        assertEquals(42, resultado);
+    }
+    ```
+    
+    Prueba de Division:
+   ```
+     @Test
+    public void divisionDosNumeros() {
+        // Arrange
+        Calculador calculador = new Calculador();
+        int numeroA = 10;
+        int numeroB = 2;
+
+        // Act
+        double resultado = calculador.division(numeroA, numeroB);
+
+        // Assert
+        assertEquals(5.0, resultado);
+    }
+    ```
+   
+   Prueba Division por cero:
+   ```
+   @Test
+    public void divisionPorCeroLanzaExcepcion() {
+        // Arrange
+        Calculador calculador = new Calculador();
+        int numeroA = 10;
+        int numeroB = 0;
+
+        // Act & Assert
+        assertThrows(ArithmeticException.class, () -> {
+            calculador.division(numeroA, numeroB);
+        });
+    }
+   ```
 2. Pruebas para casos negativos: Además de los casos de éxito,deben escribir pruebas para manejar casos negativos, por ejemplo, capturando excepciones esperadas.
-3. Cobertura de casos de Prueba: Las pruebas deben cubrir una gama de casos de entrada, incluidos casos límite y negativos.
+
+   Prueba Resta Negativa:
+   ```
+   @Test
+    public void restaConResultadoNegativo() {
+        // Arrange
+        Calculador calculador = new Calculador();
+        int numeroA = 4;
+        int numeroB = 10;
+
+        // Act
+        int resultado = calculador.restar(numeroA, numeroB);
+
+        // Assert
+        assertEquals(-6, resultado);
+    }
+   ```
+    Prueba de Multiplicación Negativa:
+   ```
+    @Test
+    public void multiplicacionConNumeroNegativo() {
+        // Arrange
+        Calculador calculador = new Calculador();
+        int numeroA = 6;
+        int numeroB = -7;
+
+        // Act
+        int resultado = calculador.multiplicacion(numeroA, numeroB);
+
+        // Assert
+        assertEquals(-42, resultado);
+    }
+   ```
+
+    Prueba Division Fraccionaria:
+   ```
+    @Test
+    public void divisionConResultadoFraccionario() {
+        // Arrange
+        Calculador calculador = new Calculador();
+        int numeroA = 5;
+        int numeroB = 2;
+
+        // Act
+        double resultado = calculador.division(numeroA, numeroB);
+
+        // Assert
+        assertEquals(2.5, resultado);
+    }
+   ```
+4. Cobertura de casos de Prueba: Las pruebas deben cubrir una gama de casos de entrada, incluidos casos límite y negativos.
 
 Incorpora Gradle al proyecto como sistema de gestión y construcción agrega una capa adicional de profesionalismo y realismo a 
 la actividad, acercando a las prácticas comunes de la industria del desarrollo de software. 
