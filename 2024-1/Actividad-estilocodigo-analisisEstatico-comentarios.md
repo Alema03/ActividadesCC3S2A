@@ -137,6 +137,10 @@ característica de la herramienta. Explica brevemente el propósito de esta cara
 por qué es importante tener esta capacidad de análisis.
 
 ### **Veracode**
+
+Veracode es una herramienta de análisis de código estático ampliamente conocida que se centra únicamente en cuestiones de seguridad. 
+
+
 ![image](https://github.com/Alema03/ActividadesCC3S2A/assets/137519831/4f4f7178-ec60-42da-8bf4-121508d13923)
 
 Documentacion: https://docs.veracode.com/
@@ -147,8 +151,6 @@ Documentacion: https://docs.veracode.com/
  - ## **¿Cómo usarla?**
      
    - En la pestaña Defectos de la página Defectos de clasificación, la columna Fuente contiene el prototipo de función que contiene el defecto y la ubicación aproximada en el cuerpo de la función, por porcentaje,donde ocurre el defecto.
-
-Seleccionar uno de los defectos le permite abrir un archivo fuente como referencia. Veracode le solicita el nombre de la ruta de clase que contiene la falla.
 
  - ## **¿Por qué es importante?**
    
