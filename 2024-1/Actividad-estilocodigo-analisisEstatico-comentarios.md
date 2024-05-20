@@ -214,3 +214,14 @@ private double[] ratio(int column){
     // ...
 }
 ```
+**¿Qué se podría mejorar?** 
+
+**¿El documento está bien documentado? Justifica tu respuesta.**
+
+**¿Los comentarios siguen un formato común, tanto en contenido como en ubicación?**
+
+**¿El código es autodocumentado? Identifica dos lugares donde lo hace bien y explique por qué es una
+buena autodocumentación.**
+
+**¿El código no se autodocumenta? Identifica dos lugares donde lo hace mal y explique por qué es una
+mala autodocumentación.**
