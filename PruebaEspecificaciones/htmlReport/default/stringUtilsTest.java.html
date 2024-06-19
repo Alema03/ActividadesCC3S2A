@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>stringUtilsTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Tests in 'PruebaEspecificaciones.test' Coverage Results</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">stringUtilsTest.java</span></div><h1>stringUtilsTest.java</h1><pre class="source lang-java linenums">import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+import pe.uni.InvalidDelimiterException;
+import pe.uni.stringUtils;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static pe.uni.stringUtils.substringsBetween;
+
+<span class="nc" id="L10">public class stringUtilsTest {</span>
+
+    // Ejercicio 5
+
+    @Test
+    void strIsNullOrEmpty() {
+        // T1: str es nulo.
+<span class="nc" id="L17">        assertThat(substringsBetween(null, &quot;a&quot;, &quot;b&quot;)).isEqualTo(null);</span>
+        // T2: str está vacío.
+<span class="nc" id="L19">        assertThat(substringsBetween(&quot;&quot;, &quot;a&quot;, &quot;b&quot;)).isEqualTo(new String[]{});</span>
+<span class="nc" id="L20">    }</span>
+
+    @Test
+    void openIsNullOrEmpty() {
+        // T3: open es nulo.
+<span class="nc" id="L25">        assertThat(substringsBetween(&quot;abc&quot;, null, &quot;b&quot;)).isEqualTo(null);</span>
+        // T4: open está vacío.
+<span class="nc" id="L27">        assertThat(substringsBetween(&quot;abc&quot;, &quot;&quot;, &quot;c&quot;)).isEqualTo(null);</span>
+<span class="nc" id="L28">    }</span>
+
+    @Test
+    void closeIsNullOrEmpty() {
+        // T5: close es nulo.
+<span class="nc" id="L33">        assertThat(substringsBetween(&quot;abc&quot;, &quot;a&quot;, null)).isEqualTo(null);</span>
+        // T6: close está vacío.
+<span class="nc" id="L35">        assertThat(substringsBetween(&quot;abc&quot;, &quot;a&quot;, &quot;&quot;)).isEqualTo(null);</span>
+<span class="nc" id="L36">    }</span>
+
+    // Cadena de longitud 1
+    @Test
+    void strOfLength1() {
+        // T7: el carácter único en str coincide con la etiqueta open.
+<span class="nc" id="L42">        assertThat(substringsBetween(&quot;a&quot;, &quot;a&quot;, &quot;b&quot;)).isEqualTo(null);</span>
+        // T8: El carácter único en str coincide con la etiqueta de close.
+<span class="nc" id="L44">        assertThat(substringsBetween(&quot;a&quot;, &quot;b&quot;, &quot;a&quot;)).isEqualTo(null);</span>
+        // T9: El carácter único en str no coincide ni con la etiqueta de open ni con la de close.
+<span class="nc" id="L46">        assertThat(substringsBetween(&quot;a&quot;, &quot;b&quot;, &quot;b&quot;)).isEqualTo(null);</span>
+        // T10: el carácter único en str coincide con las etiquetas de open y close.
+<span class="nc" id="L48">        assertThat(substringsBetween(&quot;a&quot;, &quot;a&quot;, &quot;a&quot;)).isEqualTo(null);</span>
+<span class="nc" id="L49">    }</span>
+
+    // cadena de longitud &gt; 1, longitud de open = 1, longitud de close = 1:
+    @Test
+    void openAndCloseOfLength1() {
+        // T11: str no contiene ni la etiqueta de open ni la de close.
+<span class="nc" id="L55">        assertThat(substringsBetween(&quot;abc&quot;, &quot;x&quot;, &quot;y&quot;)).isEqualTo(null);</span>
+        // T12: str contiene la etiqueta open pero no contiene la etiqueta close.
+<span class="nc" id="L57">        assertThat(substringsBetween(&quot;abc&quot;, &quot;a&quot;, &quot;y&quot;)).isEqualTo(null);</span>
+        // T13: str contiene la etiqueta de close pero no contiene la etiqueta de open.
+<span class="nc" id="L59">        assertThat(substringsBetween(&quot;abc&quot;, &quot;x&quot;, &quot;c&quot;)).isEqualTo(null);</span>
+        // T14: str contiene las etiquetas de open y close.
+<span class="nc" id="L61">        assertThat(substringsBetween(&quot;abc&quot;, &quot;a&quot;, &quot;c&quot;)).isEqualTo(new String[]{&quot;b&quot;});</span>
+        // T15: str contiene las etiquetas de open y close varias veces. &lt;- falta implementar
+<span class="nc" id="L63">        assertThat(substringsBetween(&quot;abcabcabc&quot;, &quot;a&quot;, &quot;c&quot;)).isEqualTo(new String[]{&quot;b&quot;, &quot;b&quot;, &quot;b&quot;});</span>
+        // ... previas aseveraciones aquí
+        // T22: str contiene espacios en blanco entre las etiquetas de open y close.
+<span class="nc" id="L66">        assertThat(substringsBetween(&quot;abcabyt byrc&quot;, &quot;a&quot;, &quot;c&quot;)).isEqualTo(new String[]{&quot;b&quot;, &quot;byt byr&quot;});</span>
+<span class="nc" id="L67">    }</span>
+
+    // cadena de longitud &gt; 1, longitud de open &gt; 1, longitud de close &gt; 1:
+    @Test
+    void openAndCloseTagsOfDifferentSizes() {
+        // T16: str no contiene ni la etiqueta de open ni la de close.
+<span class="nc" id="L73">        assertThat(substringsBetween(&quot;aabcc&quot;, &quot;xx&quot;, &quot;yy&quot;)).isEqualTo(null);</span>
+        // T17: str contiene la etiqueta open pero no contiene la etiqueta close.
+<span class="nc" id="L75">        assertThat(substringsBetween(&quot;aabcc&quot;, &quot;aa&quot;, &quot;yy&quot;)).isEqualTo(null);</span>
+        // T18: str contiene la etiqueta de close pero no contiene la etiqueta de open.
+<span class="nc" id="L77">        assertThat(substringsBetween(&quot;aabcc&quot;, &quot;xx&quot;, &quot;cc&quot;)).isEqualTo(null);</span>
+        // T19: str contiene las etiquetas de open y close.
+<span class="nc" id="L79">        assertThat(substringsBetween(&quot;aabbcc&quot;, &quot;aa&quot;, &quot;cc&quot;)).isEqualTo(new String[]{&quot;bb&quot;});</span>
+        // T20: str contiene las etiquetas de open y close varias veces.
+<span class="nc" id="L81">        assertThat(substringsBetween(&quot;aabbccaaeecc&quot;, &quot;aa&quot;, &quot;cc&quot;)).isEqualTo(new String[]{&quot;bb&quot;, &quot;ee&quot;});</span>
+        // ... previas aseveraciones aquí
+        // T23: str contiene espacios en blanco entre las etiquetas de open y close, las etiquetas de open y close tienen espacios en blanco.
+<span class="nc" id="L84">        assertThat(substringsBetween(&quot;a abb ddc ca abbcc&quot;, &quot;a a&quot;, &quot;c c&quot;)).isEqualTo(new String[]{&quot;bb dd&quot;});</span>
+<span class="nc" id="L85">    }</span>
+
+    @Test
+    void notSubstringBetweenOpenAndCloseTags() {
+        // T21: str contiene las etiquetas de open y close sin caracteres entre ellas.
+<span class="nc" id="L90">        assertThat(substringsBetween(&quot;aabb&quot;, &quot;aa&quot;, &quot;bb&quot;)).isEqualTo(new String[]{&quot;&quot;});</span>
+<span class="nc" id="L91">    }</span>
+
+    // Ejercicio 7
+    @Test
+    void ignoresSpecialCharacters() {
+        // T24: str contiene caracteres especiales.
+<span class="nc" id="L97">        Assertions.assertThat(stringUtils.substringsBetween(&quot;a*b?c!a@d&quot;, &quot;a&quot;, &quot;d&quot;)).isEqualTo(new String[] { &quot;bca&quot; });</span>
+<span class="nc" id="L98">    }</span>
+
+    // Ejercicio 8 &lt;- No funciona los casos T4 y T6 y T24
+    @Test
+    void throwsExceptionWhenOpenOrCloseIsEmpty() {
+        // T25: open es una cadena vacía.-&gt; Retorna InvalidDelimiterException
+<span class="nc" id="L104">        assertThrows(InvalidDelimiterException.class, () -&gt; {</span>
+<span class="nc" id="L105">            stringUtils.substringsBetween(&quot;abc&quot;, &quot;&quot;, &quot;c&quot;);</span>
+<span class="nc" id="L106">        });</span>
+        // T26: close es una cadena vacía.-&gt; Retorna InvalidDelimiterException
+<span class="nc" id="L108">        assertThrows(InvalidDelimiterException.class, () -&gt; {</span>
+<span class="nc" id="L109">            stringUtils.substringsBetween(&quot;abc&quot;, &quot;a&quot;, &quot;&quot;);</span>
+<span class="nc" id="L110">        });</span>
+<span class="nc" id="L111">    }</span>
+
+
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

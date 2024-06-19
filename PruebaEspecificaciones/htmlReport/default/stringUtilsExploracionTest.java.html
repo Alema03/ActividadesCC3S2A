@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>stringUtilsExploracionTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Tests in 'PruebaEspecificaciones.test' Coverage Results</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">stringUtilsExploracionTest.java</span></div><h1>stringUtilsExploracionTest.java</h1><pre class="source lang-java linenums">import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+import pe.uni.stringUtils;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static pe.uni.stringUtils.substringsBetween;
+
+<span class="nc" id="L8">public class stringUtilsExploracionTest {</span>
+
+    // Ejercicio 1
+    // Existe un substring entre los caracteres &quot;a&quot; y &quot;c&quot; en la cadena &quot;axcaycazc&quot;
+    @Test
+    void testSubstringsBetween() {
+<span class="nc" id="L14">        Assertions.assertThat(stringUtils.substringsBetween(&quot;axcaycazc&quot;, &quot;a&quot;, &quot;c&quot;)).isEqualTo(new String[] { &quot;x&quot;, &quot;y&quot;, &quot;z&quot; });</span>
+<span class="nc" id="L15">    }</span>
+
+    //  Ejercicio 2
+    // Caso simple: Hay un substring entre &quot;a&quot; y &quot;d&quot; en la cadena &quot;abcd&quot;
+    @Test
+    void simpleCase() {
+<span class="nc" id="L21">        assertThat(stringUtils.substringsBetween(&quot;abcd&quot;, &quot;a&quot;, &quot;d&quot;)).isEqualTo(new String[] { &quot;bc&quot; });</span>
+<span class="nc" id="L22">    }</span>
+
+    // Caso con múltiples subcadenas: Hay dos substrings entre &quot;a&quot; y &quot;d&quot; en la cadena &quot;abcdabcdab&quot;
+    @Test
+    void manyStrings() {
+<span class="nc" id="L27">        assertThat(stringUtils.substringsBetween(&quot;abcdabcdab&quot;, &quot;a&quot;, &quot;d&quot;)).isEqualTo(new String[] { &quot;bc&quot;, &quot;bc&quot; });</span>
+<span class="nc" id="L28">    }</span>
+
+    // Caso con etiquetas más largas: Hay dos substrings entre &quot;aa&quot; y &quot;dd&quot; en la cadena &quot;aabcddaabfddaab&quot;
+    @Test
+    void openAndCloseTagsThatAreLongerThan1Char() {
+<span class="nc" id="L33">        assertThat(stringUtils.substringsBetween(&quot;aabcddaabfddaab&quot;, &quot;aa&quot;, &quot;dd&quot;)).isEqualTo(new String[] { &quot;bc&quot;, &quot;bf&quot; });</span>
+<span class="nc" id="L34">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

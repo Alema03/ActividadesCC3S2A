@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CartItem.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Tests in 'PruebaEspecificaciones.test' Coverage Results</a> &gt; <a href="index.source.html" class="el_package">pe.uni</a> &gt; <span class="el_source">CartItem.java</span></div><h1>CartItem.java</h1><pre class="source lang-java linenums">package pe.uni;
+import java.util.Objects;
+public class CartItem {
+    private final String product;
+    private final int quantity;
+    private final double unitPrice;
+
+<span class="fc" id="L8">    public CartItem(String product, int quantity, double unitPrice) {</span>
+<span class="fc" id="L9">        this.product = product;</span>
+<span class="fc" id="L10">        this.quantity = quantity;</span>
+<span class="fc" id="L11">        this.unitPrice = unitPrice;</span>
+<span class="fc" id="L12">    }</span>
+
+    public String getProduct() {
+<span class="nc" id="L15">        return product;</span>
+    }
+
+    public int getQuantity() {
+<span class="fc" id="L19">        return quantity;</span>
+    }
+
+    public double getUnitPrice() {
+<span class="fc" id="L23">        return unitPrice;</span>
+    }
+
+    @Override
+    public boolean equals(Object o) {
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        if (this == o) return true;</span>
+<span class="nc bnc" id="L29" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc" id="L30">        CartItem cartItem = (CartItem) o;</span>
+<span class="nc bnc" id="L31" title="All 6 branches missed.">        return quantity == cartItem.quantity &amp;&amp; Double.compare(cartItem.unitPrice, unitPrice) == 0 &amp;&amp; product.equals(cartItem.product);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L36">        return Objects.hash(product, quantity, unitPrice);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
